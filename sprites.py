@@ -8,7 +8,7 @@ class Player(pg.sprite.Sprite):
 	def __init__(self, game):
 		self.g = game;
 		pg.sprite.Sprite.__init__(self);
-		self.image = pg.Surface((60, 20));
+		self.image = pg.Surface((60, 58));
 		# self.image.fill(BLU);
 		self.rect = self.image.get_rect();
 		self.pos = vec2(WIDTH / 2, HEIGHT - 50);
@@ -23,12 +23,18 @@ class Player(pg.sprite.Sprite):
 
 		self.HP = 100;
 
+		self.spritesheet = pg.image.load('ships.PNG').convert_alpha();
+
+
+
 	def update(self):
 
-		if self.HP <= 50:
-			self.image.fill(RED);
-		else:
-			self.image.fill(BLU);
+		self.image.blit(self.get_image(), (0, 0));
+
+		# if self.HP <= 50:
+		# 	self.image.fill(RED);
+		# else:
+		# 	self.image.fill(BLU);
 
 		
 		# all the keyboard input stuff
@@ -73,7 +79,12 @@ class Player(pg.sprite.Sprite):
 		self.g.all_sprites.add(bullet);
 		self.g.bullets.add(bullet);
 
-		# print('Shoot');
+	def get_image(self):
+		self.img = pg.Surface((56, 58));
+		# blit to the Surface() above from the spritesheet loaded in __init__()
+		# args = spritesheet, (x, y), (chunk(w, h) of sprite)
+		self.img.blit(self.spritesheet, (0, 0), (400, 4, 56, 58));
+		return self.img;
 
 class Enemy(pg.sprite.Sprite):
 	def __init__(self, xpos, ypos, game ):
@@ -100,6 +111,8 @@ class Enemy(pg.sprite.Sprite):
 		self.moveLeft = False;
 		self.moveRight = True;
 		self.moveDown = False;
+
+		# ENEMY HEALTH????!!!
 
 	def update(self):
 

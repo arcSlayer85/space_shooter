@@ -33,4 +33,4 @@ PNK = (244, 66, 200); 		# Pink
 
 
 BG_EL_SCREEN = pg.image.load('spaceBG.JPG');
-# BG_START_SCREEN = pg.image.load('');
+BG_START_SCREEN = pg.image.load('spaceBG2.JPG');
