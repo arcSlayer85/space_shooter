@@ -9,7 +9,7 @@ class Player(pg.sprite.Sprite):
 		self.g = game;
 		pg.sprite.Sprite.__init__(self);
 		self.image = pg.Surface((60, 20));
-		self.image.fill(BLU);
+		# self.image.fill(BLU);
 		self.rect = self.image.get_rect();
 		self.pos = vec2(WIDTH / 2, HEIGHT - 50);
 		self.rect.center = self.pos;
@@ -21,7 +21,14 @@ class Player(pg.sprite.Sprite):
 
 		self.points = 0;
 
+		self.HP = 100;
+
 	def update(self):
+
+		if self.HP <= 50:
+			self.image.fill(RED);
+		else:
+			self.image.fill(BLU);
 
 		
 		# all the keyboard input stuff
@@ -112,14 +119,14 @@ class Enemy(pg.sprite.Sprite):
 
 		# if enemy has moved down and next direction(dx) is 0 = Left
 		# move left
-		if self.moveDown and self.pos0 >= 20 and self.dx == 0:
+		if self.moveDown and self.pos0 >= 15 and self.dx == 0:
 			self.vel.y = 0;
 			self.moveDown = False;
 			self.moveLeft = True;
 
 		# if enemy has moved down and next direction(dx) is 1 = Right
 		# move right	
-		elif self.moveDown and self.pos0 >= 20 and self.dx == 1:
+		elif self.moveDown and self.pos0 >= 15 and self.dx == 1:
 			self.vel.y = 0;
 			self.moveDown = False;
 			self.moveRight = True;
@@ -139,6 +146,20 @@ class Enemy(pg.sprite.Sprite):
 		self.g.all_sprites.add(bullet);
 		self.g.bullets.add(bullet);
 
+class Spec_Enemy(pg.sprite.Sprite):
+
+	# after 24(might change the amount) enemies start to replace and
+	# spawn special enemies
+
+	pass;
+
+class MotherShip(pg.sprite.Sprite):
+
+	# intermitently spawn a mother to move acoss the top of the screen
+	# above the regular enemies, player power up when killed?...
+
+	pass;
+
 class Bullet(pg.sprite.Sprite):
 	def __init__(self, x, y, speed):
 		pg.sprite.Sprite.__init__(self);
@@ -155,23 +176,4 @@ class Bullet(pg.sprite.Sprite):
 
 		if self.rect.bottom < 0:
 			self.kill();
-
-
-
-
-		
-
-		
-		
-		
-
-
-
-
-
-
-
-
-
-
 

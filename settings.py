@@ -1,8 +1,10 @@
+import pygame as pg;
 # screen stuff...
 
 WIDTH = 800;
 HEIGHT = 650;
 FPS = 60;
+FONT_NAME = pg.font.match_font('helvetica');
 
 # Player stuff
 
@@ -11,8 +13,7 @@ FRICTION = -0.1;
 
 # Enemy Stuff
 
-ENEMY_VEL = 0.5;
-
+ENEMY_VEL = 0.75;
 
 # Colours
 
@@ -26,4 +27,10 @@ YEL = (255, 255, 0);		# Yellow
 ORA = (244, 160, 66);		# Orange
 PUR = (200, 66, 244);		# Purple
 BRO = (115, 70, 18);		# Brown
-PNK = (244, 66, 200);		# Pink
+PNK = (244, 66, 200); 		# Pink
+
+# background images
+
+
+BG_EL_SCREEN = pg.image.load('spaceBG.JPG');
+# BG_START_SCREEN = pg.image.load('');
